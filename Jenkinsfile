@@ -5,10 +5,42 @@ pipeline {
         APP_NAME = "my_application"
     }
     stages {
-        stage('Checkout') {
+        stage('Checkout(main)') {
             steps {
                 // 检出代码
                 echo "检出代码"
+                  checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: '*/main']], // 指定分支
+                    userRemoteConfigs: [[
+                        url: 'https://kingxurenxiang@bitbucket.org/midlanddevelop/mr-lms.git', // 仓库地址
+                        credentialsId: 'f598185f-b5ff-44ac-bd1c-a48e5b320d38' // 凭据 ID
+                    ]],
+                    extensions: [
+                        [$class: 'CleanBeforeCheckout'], // 清理工作区
+                        [$class: 'SubmoduleOption', recursive: true] // 拉取子模块
+                    ]
+                ])
+                sh 'ls -al'
+            }
+        }
+        stage('Checkout(uat)') {
+            steps {
+                // 检出代码
+                echo "检出代码"
+                  checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: '*/uat']], // 指定分支
+                    userRemoteConfigs: [[
+                        url: 'https://kingxurenxiang@bitbucket.org/midlanddevelop/mr-lms.git', // 仓库地址
+                        credentialsId: 'f598185f-b5ff-44ac-bd1c-a48e5b320d38' // 凭据 ID
+                    ]],
+                    extensions: [
+                        [$class: 'CleanBeforeCheckout'], // 清理工作区
+                        [$class: 'SubmoduleOption', recursive: true] // 拉取子模块
+                    ]
+                ])
+                sh 'ls -al'
             }
         }
         stage('Build') {
