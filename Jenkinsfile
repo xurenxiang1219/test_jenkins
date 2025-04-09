@@ -13,7 +13,7 @@ pipeline {
                     $class: 'GitSCM',
                     branches: [[name: '*/main']], // 指定分支
                     userRemoteConfigs: [[
-                        url: 'https://kingxurenxiang@bitbucket.org/midlanddevelop/mr-lms.git', // 仓库地址
+                        url: 'https://SZSystemDeveloper@bitbucket.org/midlanddevelop/mr-lms.git', // 仓库地址
                         credentialsId: 'f598185f-b5ff-44ac-bd1c-a48e5b320d38' // 凭据 ID
                     ]],
                     extensions: [
@@ -32,7 +32,7 @@ pipeline {
                     $class: 'GitSCM',
                     branches: [[name: '*/uat']], // 指定分支
                     userRemoteConfigs: [[
-                        url: 'https://kingxurenxiang@bitbucket.org/midlanddevelop/mr-lms.git', // 仓库地址
+                        url: 'https://SZSystemDeveloper@bitbucket.org/midlanddevelop/mr-lms.git', // 仓库地址
                         credentialsId: 'f598185f-b5ff-44ac-bd1c-a48e5b320d38' // 凭据 ID
                     ]],
                     extensions: [
